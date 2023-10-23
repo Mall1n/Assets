@@ -308,7 +308,9 @@ namespace Mall1n.Spotify
             int count = 0;
             for (int i = 0; i < music.Length; i++)
                 if (music[i] == null) count++;
+                
             if (count == 0) this.enabled = false;
+
             if (count == music.Length) this.enabled = false;
             if (audioSource == null) this.enabled = false;
         }
