@@ -1,0 +1,759 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
+  m_Name: ControllerNotification
+  m_EditorClassIdentifier: 
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 15f14274d207bf44cb5dd33eb2671997,
+    type: 2}
+  udonAssembly: ".data_start\r\n\r\n    .export UdonMove\r\n    .export UdonSpawn\r\n   
+    .export HasJoin\r\n    .export HasLeft\r\n    .export TimeUdon\r\n    \r\n   
+    __instance_0: %VRCUdonUdonBehaviour, this\r\n    __eventName_0: %SystemString,
+    null\r\n    __instance_1: %VRCUdonUdonBehaviour, this\r\n    __symbolName_0:
+    %SystemString, null\r\n    __value_0: %SystemObject, null\r\n    __instance_2:
+    %VRCSDKBaseVRCPlayerApi, null\r\n    onPlayerJoinedPlayer: %VRCSDKBaseVRCPlayerApi,
+    null\r\n    __instance_3: %VRCUdonUdonBehaviour, this\r\n    __symbolName_1:
+    %SystemString, null\r\n    __value_1: %SystemObject, null\r\n    __instance_4:
+    %VRCUdonUdonBehaviour, this\r\n    __value_2: %SystemBoolean, null\r\n    __instance_5:
+    %VRCUdonUdonBehaviour, this\r\n    __eventName_1: %SystemString, null\r\n   
+    __instance_6: %VRCUdonUdonBehaviour, this\r\n    __eventName_2: %SystemString,
+    null\r\n    __instance_7: %VRCUdonUdonBehaviour, this\r\n    __eventName_3: %SystemString,
+    null\r\n    __instance_8: %VRCUdonUdonBehaviour, this\r\n    __eventName_4: %SystemString,
+    null\r\n    __instance_9: %VRCUdonUdonBehaviour, this\r\n    __symbolName_2:
+    %SystemString, null\r\n    __value_3: %SystemObject, null\r\n    __instance_A:
+    %VRCSDKBaseVRCPlayerApi, null\r\n    onPlayerLeftPlayer: %VRCSDKBaseVRCPlayerApi,
+    null\r\n    __instance_B: %VRCUdonUdonBehaviour, this\r\n    __symbolName_3:
+    %SystemString, null\r\n    __value_4: %SystemObject, null\r\n    __instance_C:
+    %VRCUdonUdonBehaviour, this\r\n    __value_5: %SystemBoolean, null\r\n    UdonMove:
+    %VRCUdonUdonBehaviour, this\r\n    Bool: %SystemBoolean, null\r\n    Stop: %SystemString,
+    null\r\n    UdonSpawn: %VRCUdonUdonBehaviour, this\r\n    Spawn: %SystemString,
+    null\r\n    LastJoin: %SystemString, null\r\n    Players: %VRCSDKBaseVRCPlayerApiArray,
+    null\r\n    HasJoin: %SystemString, null\r\n    TextJoinLeft: %SystemString,
+    null\r\n    HasLeft: %SystemString, null\r\n    TimeUdon: %VRCUdonUdonBehaviour,
+    this\r\n    JoinAndLeftPlayer: %SystemString, null\r\n\r\n.data_end\r\n\r\n.code_start\r\n\r\n   
+    .export _onPlayerJoined\r\n    \r\n    _onPlayerJoined:\r\n    \r\n        PUSH,
+    __instance_0\r\n        PUSH, __eventName_0\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n       
+    PUSH, UdonMove\r\n        PUSH, __instance_1\r\n        COPY\r\n        PUSH,
+    LastJoin\r\n        PUSH, __symbolName_0\r\n        COPY\r\n        PUSH, onPlayerJoinedPlayer\r\n       
+    PUSH, __instance_2\r\n        COPY\r\n        PUSH, __instance_2\r\n        PUSH,
+    __value_0\r\n        EXTERN, \"VRCSDKBaseVRCPlayerApi.__get_displayName__SystemString\"\r\n       
+    PUSH, __instance_1\r\n        PUSH, __symbolName_0\r\n        PUSH, __value_0\r\n       
+    EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_SystemObject__SystemVoid\"\r\n       
+    PUSH, UdonMove\r\n        PUSH, __instance_3\r\n        COPY\r\n        PUSH,
+    TextJoinLeft\r\n        PUSH, __symbolName_1\r\n        COPY\r\n        PUSH,
+    HasJoin\r\n        PUSH, __value_1\r\n        COPY\r\n        PUSH, __instance_3\r\n       
+    PUSH, __symbolName_1\r\n        PUSH, __value_1\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_SystemObject__SystemVoid\"\r\n       
+    PUSH, UdonMove\r\n        PUSH, __instance_4\r\n        COPY\r\n        PUSH,
+    __instance_4\r\n        PUSH, Bool\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__set_enabled__SystemBoolean__SystemVoid\"\r\n       
+    JUMP, 0xFFFFFFFC\r\n    \r\n    .export SendEvents\r\n    \r\n    SendEvents:\r\n   
+    \r\n        PUSH, TimeUdon\r\n        PUSH, __instance_5\r\n        COPY\r\n       
+    PUSH, JoinAndLeftPlayer\r\n        PUSH, __eventName_1\r\n        COPY\r\n       
+    PUSH, __instance_5\r\n        PUSH, __eventName_1\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n       
+    PUSH, UdonMove\r\n        PUSH, __instance_6\r\n        COPY\r\n        PUSH,
+    Stop\r\n        PUSH, __eventName_2\r\n        COPY\r\n        PUSH, __instance_6\r\n       
+    PUSH, __eventName_2\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n       
+    PUSH, UdonSpawn\r\n        PUSH, __instance_7\r\n        COPY\r\n        PUSH,
+    Spawn\r\n        PUSH, __eventName_3\r\n        COPY\r\n        PUSH, __instance_7\r\n       
+    PUSH, __eventName_3\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n       
+    JUMP, 0xFFFFFFFC\r\n    \r\n    .export _onPlayerLeft\r\n    \r\n    _onPlayerLeft:\r\n   
+    \r\n        PUSH, __instance_8\r\n        PUSH, __eventName_4\r\n        EXTERN,
+    \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n       
+    PUSH, UdonMove\r\n        PUSH, __instance_9\r\n        COPY\r\n        PUSH,
+    LastJoin\r\n        PUSH, __symbolName_2\r\n        COPY\r\n        PUSH, onPlayerLeftPlayer\r\n       
+    PUSH, __instance_A\r\n        COPY\r\n        PUSH, __instance_A\r\n        PUSH,
+    __value_3\r\n        EXTERN, \"VRCSDKBaseVRCPlayerApi.__get_displayName__SystemString\"\r\n       
+    PUSH, __instance_9\r\n        PUSH, __symbolName_2\r\n        PUSH, __value_3\r\n       
+    EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_SystemObject__SystemVoid\"\r\n       
+    PUSH, UdonMove\r\n        PUSH, __instance_B\r\n        COPY\r\n        PUSH,
+    TextJoinLeft\r\n        PUSH, __symbolName_3\r\n        COPY\r\n        PUSH,
+    HasLeft\r\n        PUSH, __value_4\r\n        COPY\r\n        PUSH, __instance_B\r\n       
+    PUSH, __symbolName_3\r\n        PUSH, __value_4\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_SystemObject__SystemVoid\"\r\n       
+    PUSH, UdonMove\r\n        PUSH, __instance_C\r\n        COPY\r\n        PUSH,
+    __instance_C\r\n        PUSH, Bool\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__set_enabled__SystemBoolean__SystemVoid\"\r\n       
+    JUMP, 0xFFFFFFFC\r\n    \r\n\r\n.code_end\r\n"
+  assemblyError: 
+  graphData:
+    name: 
+    description: 
+    nodes:
+    - fullName: Variable_VRCUdonCommonInterfacesIUdonEventReceiver
+      uid: 58b55953-c39e-4283-9cae-872870455243
+      position: {x: -2322.2366, y: -3365.428}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|UdonMove
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|True
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Variable_SystemBoolean
+      uid: 04445c52-9927-4848-9a9f-a5c7b878d3a7
+      position: {x: -2322.2366, y: -3365.428}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|True
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Bool
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Variable_SystemString
+      uid: e23cd936-a55a-40d9-8606-a2f61847294c
+      position: {x: -2783.1099, y: -3714.7527}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Stop
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Stop
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Event_OnPlayerJoined
+      uid: dad739fc-d111-4b64-bba9-f095798f1ca1
+      position: {x: -92.39031, y: 860}
+      nodeUIDs: []
+      flowUIDs:
+      - 5a594858-33f2-4956-b89b-5f8f0dfac543
+      nodeValues: []
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__set_enabled__SystemBoolean__SystemVoid
+      uid: 063ee9a7-b591-4e52-b2d0-14fff9b715a5
+      position: {x: 1134.6097, y: 957}
+      nodeUIDs:
+      - eb9a15d5-f00e-4ef7-8edc-4993d95edfaa
+      - 47b30943-a02e-4ae7-87cb-2e93f9e8a57f
+      flowUIDs:
+      - 
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+    - fullName: Get_Variable
+      uid: eb9a15d5-f00e-4ef7-8edc-4993d95edfaa
+      position: {x: 208.60968, y: 978}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|58b55953-c39e-4283-9cae-872870455243
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: 47b30943-a02e-4ae7-87cb-2e93f9e8a57f
+      position: {x: 1145.6097, y: 1118}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|04445c52-9927-4848-9a9f-a5c7b878d3a7
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Variable_VRCUdonCommonInterfacesIUdonEventReceiver
+      uid: 2826c3c2-2af4-4718-b4cd-dd1787821f11
+      position: {x: -1259.8234, y: -2739.225}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|UdonSpawn
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|True
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Variable_SystemString
+      uid: b0c1656d-6191-4b26-a50f-36ed662eb905
+      position: {x: -1259.8234, y: -2739.225}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Spawn
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Spawn
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Variable_SystemString
+      uid: ac1ecdff-df89-4b29-887b-26fb2c6612b5
+      position: {x: -1668.7832, y: -2794.9316}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|LastJoin
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|LastJoin
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_SystemObject__SystemVoid
+      uid: 9aa3bc30-9fb4-485a-8d06-56330bee2e36
+      position: {x: 555.6097, y: 813}
+      nodeUIDs:
+      - eb9a15d5-f00e-4ef7-8edc-4993d95edfaa|0
+      - aebc3c52-421d-47f4-8d8a-cd119dbe661b|0
+      - 02749c3e-f01e-43a6-8ded-319a70d1396e|0
+      flowUIDs:
+      - cdc6ea29-b9f0-4826-bfd0-9808b6282f71
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: aebc3c52-421d-47f4-8d8a-cd119dbe661b
+      position: {x: 553.6097, y: 1078}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|ac1ecdff-df89-4b29-887b-26fb2c6612b5
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: VRCSDKBaseVRCPlayerApi.__get_displayName__SystemString
+      uid: 02749c3e-f01e-43a6-8ded-319a70d1396e
+      position: {x: 554.6097, y: 987}
+      nodeUIDs:
+      - dad739fc-d111-4b64-bba9-f095798f1ca1|0
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Variable_VRCSDKBaseVRCPlayerApiArray
+      uid: 81eefa6e-204a-4699-a92d-77664c71c8ac
+      position: {x: 0, y: 0}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Players
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Variable_SystemString
+      uid: 91ec1184-32d0-46b0-a642-9850fb335cbd
+      position: {x: -903.8923, y: -930.75183}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|has
+          join your patty!
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|HasJoin
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|True
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Get_Variable
+      uid: 0659b635-163b-4f0c-90ef-564d85be7911
+      position: {x: 848.6097, y: 1130}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|91ec1184-32d0-46b0-a642-9850fb335cbd
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_SystemObject__SystemVoid
+      uid: cdc6ea29-b9f0-4826-bfd0-9808b6282f71
+      position: {x: 827.6097, y: 860}
+      nodeUIDs:
+      - eb9a15d5-f00e-4ef7-8edc-4993d95edfaa|0
+      - 82ccabb2-0219-4d38-b33e-8546de0ea650|0
+      - 0659b635-163b-4f0c-90ef-564d85be7911|0
+      flowUIDs:
+      - 063ee9a7-b591-4e52-b2d0-14fff9b715a5
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Variable_SystemString
+      uid: ae7a7774-5d91-4617-872f-8d4d0be8fa1d
+      position: {x: -903.8923, y: -930.75183}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|TextJoinLeft
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|TextJoinLeft
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Get_Variable
+      uid: 82ccabb2-0219-4d38-b33e-8546de0ea650
+      position: {x: 840.6097, y: 1031}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|ae7a7774-5d91-4617-872f-8d4d0be8fa1d
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__set_enabled__SystemBoolean__SystemVoid
+      uid: 9cedb2f9-519b-4d00-94b5-1f6112073b91
+      position: {x: 1098.4232, y: 1542.4233}
+      nodeUIDs:
+      - 5286d465-12f7-417a-ba59-14be0d313a7e
+      - e75c729b-74ed-4aa3-9457-f3d3efaa7db4
+      flowUIDs:
+      - 
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+    - fullName: Get_Variable
+      uid: 5286d465-12f7-417a-ba59-14be0d313a7e
+      position: {x: 121.4232, y: 1502.4233}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|58b55953-c39e-4283-9cae-872870455243
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: e75c729b-74ed-4aa3-9457-f3d3efaa7db4
+      position: {x: 1115.4232, y: 1684.4233}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|04445c52-9927-4848-9a9f-a5c7b878d3a7
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_SystemObject__SystemVoid
+      uid: f6d28145-c5fb-40cd-9466-ad45d30a3a7a
+      position: {x: 520.4232, y: 1398.4233}
+      nodeUIDs:
+      - 5286d465-12f7-417a-ba59-14be0d313a7e
+      - 508072cf-bda0-49ca-8793-e0d2d8bce07f
+      - 6c03c819-6a84-4880-a9ab-8a2afaf5f4ab
+      flowUIDs:
+      - 22c94e2a-d7f2-4119-9a5d-24299b705f41
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: 508072cf-bda0-49ca-8793-e0d2d8bce07f
+      position: {x: 524.4232, y: 1664.4233}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|ac1ecdff-df89-4b29-887b-26fb2c6612b5
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: VRCSDKBaseVRCPlayerApi.__get_displayName__SystemString
+      uid: 6c03c819-6a84-4880-a9ab-8a2afaf5f4ab
+      position: {x: 520.4232, y: 1567.4233}
+      nodeUIDs:
+      - e904f371-6994-4ee0-84c9-2bd982970a35|0
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_SystemObject__SystemVoid
+      uid: 22c94e2a-d7f2-4119-9a5d-24299b705f41
+      position: {x: 791.4232, y: 1445.4233}
+      nodeUIDs:
+      - 5286d465-12f7-417a-ba59-14be0d313a7e
+      - 82a0f7a2-2735-4fdc-9c15-52440802319f
+      - 0188adf5-b343-4cec-803b-4876cefdbe9c|0
+      flowUIDs:
+      - 9cedb2f9-519b-4d00-94b5-1f6112073b91
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: 82a0f7a2-2735-4fdc-9c15-52440802319f
+      position: {x: 825.4232, y: 1616.4233}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|ae7a7774-5d91-4617-872f-8d4d0be8fa1d
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Variable_SystemString
+      uid: 09204e55-2fc5-4fe0-8179-39a3f01f9b54
+      position: {x: 0, y: 0}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|has
+          left your patty.
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|HasLeft
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|True
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Get_Variable
+      uid: 0188adf5-b343-4cec-803b-4876cefdbe9c
+      position: {x: 864.4232, y: 1728.4233}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|09204e55-2fc5-4fe0-8179-39a3f01f9b54
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid
+      uid: 72d1a521-6adb-45cb-b5a7-f6795bf0f4e2
+      position: {x: 1891.9282, y: 1123.2471}
+      nodeUIDs:
+      - 083f868d-b041-4b75-abfe-cb05d0aab850
+      - ce10486f-766f-43b1-a2a6-ff02050ff037
+      flowUIDs:
+      - dcac3648-02b1-4702-91b0-8758f13b6377
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: 083f868d-b041-4b75-abfe-cb05d0aab850
+      position: {x: 1888.7529, y: 1271.9999}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|58b55953-c39e-4283-9cae-872870455243
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: 1cf5e517-2588-42b8-a46e-4922975a75ad
+      position: {x: 2156.235, y: 1268.4979}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|2826c3c2-2af4-4718-b4cd-dd1787821f11
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: ce10486f-766f-43b1-a2a6-ff02050ff037
+      position: {x: 1896.9641, y: 1364.2471}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|e23cd936-a55a-40d9-8606-a2f61847294c
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: 28511452-196b-4548-9424-03a01d29a32e
+      position: {x: 2150.263, y: 1356.2509}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|b0c1656d-6191-4b26-a50f-36ed662eb905
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid
+      uid: dcac3648-02b1-4702-91b0-8758f13b6377
+      position: {x: 2145.1714, y: 1130.494}
+      nodeUIDs:
+      - 1cf5e517-2588-42b8-a46e-4922975a75ad
+      - 28511452-196b-4548-9424-03a01d29a32e
+      flowUIDs:
+      - 
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Event_Custom
+      uid: 24c392d0-7c0d-4fa7-be53-d3ca19177148
+      position: {x: 1373.5615, y: 1137.4911}
+      nodeUIDs:
+      - 
+      flowUIDs:
+      - 0681197f-c096-4e5e-be36-fb564f5a102f
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|SendEvents
+    - fullName: Event_OnPlayerLeft
+      uid: e904f371-6994-4ee0-84c9-2bd982970a35
+      position: {x: -79.5768, y: 1349.4233}
+      nodeUIDs: []
+      flowUIDs:
+      - 7346697c-b227-4e1a-8d94-024a3c36c7bf
+      nodeValues: []
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid
+      uid: 7346697c-b227-4e1a-8d94-024a3c36c7bf
+      position: {x: 172.4232, y: 1338.4233}
+      nodeUIDs:
+      - 
+      - 
+      flowUIDs:
+      - f6d28145-c5fb-40cd-9466-ad45d30a3a7a
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|SendEvents
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid
+      uid: 5a594858-33f2-4956-b89b-5f8f0dfac543
+      position: {x: 160.60968, y: 799}
+      nodeUIDs:
+      - 
+      - 
+      flowUIDs:
+      - 9aa3bc30-9fb4-485a-8d06-56330bee2e36
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|SendEvents
+    - fullName: Variable_VRCUdonCommonInterfacesIUdonEventReceiver
+      uid: ed42938a-a47a-4498-9935-917de070be79
+      position: {x: -2190.4712, y: -1356.375}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|TimeUdon
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|True
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Variable_SystemString
+      uid: 7990f553-427c-4c5f-82a5-b7f5c07a5163
+      position: {x: -2190.4712, y: -1356.375}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|JoinAndLeftPlayer
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|JoinAndLeftPlayer
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Get_Variable
+      uid: 910767d2-31c4-415b-a7b5-78aa3b475fba
+      position: {x: 1630.2107, y: 1283.3542}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|ed42938a-a47a-4498-9935-917de070be79
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid
+      uid: 0681197f-c096-4e5e-be36-fb564f5a102f
+      position: {x: 1643.741, y: 1143.0277}
+      nodeUIDs:
+      - 910767d2-31c4-415b-a7b5-78aa3b475fba|0
+      - ebb645ed-4067-4794-a2e7-be61a94c7808|0
+      flowUIDs:
+      - 72d1a521-6adb-45cb-b5a7-f6795bf0f4e2
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: ebb645ed-4067-4794-a2e7-be61a94c7808
+      position: {x: 1627.9801, y: 1373.2588}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|7990f553-427c-4c5f-82a5-b7f5c07a5163
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    updateOrder: 0
+  graphElementData:
+  - type: 5
+    uid: f9446351-68af-4313-9dcc-9f42b20b04d9
+    jsonData: '{"visible":true,"layout":{"serializedVersion":"2","x":12.0,"y":135.0,"width":299.0,"height":320.0}}'
+  - type: 2
+    uid: 1605f89b-9bdb-43f0-8eb1-85c0a9bdc70d
+    jsonData: '{"uid":"1605f89b-9bdb-43f0-8eb1-85c0a9bdc70d","layout":{"serializedVersion":"2","x":-117.00003814697266,"y":741.9998779296875,"width":1416.0,"height":496.0},"containedElements":["dad739fc-d111-4b64-bba9-f095798f1ca1","063ee9a7-b591-4e52-b2d0-14fff9b715a5","eb9a15d5-f00e-4ef7-8edc-4993d95edfaa","47b30943-a02e-4ae7-87cb-2e93f9e8a57f","9aa3bc30-9fb4-485a-8d06-56330bee2e36","aebc3c52-421d-47f4-8d8a-cd119dbe661b","02749c3e-f01e-43a6-8ded-319a70d1396e","0659b635-163b-4f0c-90ef-564d85be7911","cdc6ea29-b9f0-4826-bfd0-9808b6282f71","82ccabb2-0219-4d38-b33e-8546de0ea650","5a594858-33f2-4956-b89b-5f8f0dfac543"],"title":"Join","layer":0,"elementTypeColor":{"r":0.0,"g":0.0,"b":0.0,"a":0.0}}'
+  - type: 2
+    uid: 761b4037-ab54-4a57-97dd-9ea5de1b6fb6
+    jsonData: '{"uid":"761b4037-ab54-4a57-97dd-9ea5de1b6fb6","layout":{"serializedVersion":"2","x":-105.00003051757813,"y":1285.999755859375,"width":1373.0,"height":555.0},"containedElements":["9cedb2f9-519b-4d00-94b5-1f6112073b91","5286d465-12f7-417a-ba59-14be0d313a7e","e75c729b-74ed-4aa3-9457-f3d3efaa7db4","f6d28145-c5fb-40cd-9466-ad45d30a3a7a","508072cf-bda0-49ca-8793-e0d2d8bce07f","6c03c819-6a84-4880-a9ab-8a2afaf5f4ab","22c94e2a-d7f2-4119-9a5d-24299b705f41","82a0f7a2-2735-4fdc-9c15-52440802319f","0188adf5-b343-4cec-803b-4876cefdbe9c","e904f371-6994-4ee0-84c9-2bd982970a35","7346697c-b227-4e1a-8d94-024a3c36c7bf"],"title":"Left","layer":0,"elementTypeColor":{"r":0.0,"g":0.0,"b":0.0,"a":0.0}}'
+  - type: 2
+    uid: bbc493ac-b45a-4fa4-b58b-33f81caeede6
+    jsonData: '{"uid":"bbc493ac-b45a-4fa4-b58b-33f81caeede6","layout":{"serializedVersion":"2","x":1349.0,"y":1066.0,"width":1055.0,"height":415.0},"containedElements":["72d1a521-6adb-45cb-b5a7-f6795bf0f4e2","083f868d-b041-4b75-abfe-cb05d0aab850","1cf5e517-2588-42b8-a46e-4922975a75ad","ce10486f-766f-43b1-a2a6-ff02050ff037","28511452-196b-4548-9424-03a01d29a32e","dcac3648-02b1-4702-91b0-8758f13b6377","24c392d0-7c0d-4fa7-be53-d3ca19177148","910767d2-31c4-415b-a7b5-78aa3b475fba","0681197f-c096-4e5e-be36-fb564f5a102f","ebb645ed-4067-4794-a2e7-be61a94c7808"],"title":"CustomEvent","layer":0,"elementTypeColor":{"r":0.0,"g":0.0,"b":0.0,"a":0.0}}'
+  viewTransform:
+    position: {x: 187, y: -263}
+    scale: 0.65751624
+  version: 1.0.0
+  showAssembly: 0
