@@ -4,7 +4,7 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
-public class ColliderFloor : UdonSharpBehaviour
+public class TriggerFloor : UdonSharpBehaviour
 {
     public VacuumV2 robotVacuumScript;
     public float delay = 2.0f;
@@ -64,5 +64,4 @@ public class ColliderFloor : UdonSharpBehaviour
         robotVacuumScript.onFloor = false;
         robotVacuumScript.delay = delay;
     }
-
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 using System;
 using VRC.SDKBase;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(VRC_Pickup))]
 public class RobotVacuumScript : UdonSharpBehaviour
 {
     public AudioSource audioSource;
@@ -66,7 +68,12 @@ public class RobotVacuumScript : UdonSharpBehaviour
 
     void Start()
     {
-        if (!Enabled) this.enabled = false;
+        if (!Enabled)
+        {
+            if (audioSource != null) audioSource.enabled = false;
+            this.enabled = false;
+        }
+        if (audioSource != null) audioSource.PlayDelayed(0.1f);
 
         rigidBody = GetComponent<Rigidbody>();
         dateTimePoint = DateTime.Now;

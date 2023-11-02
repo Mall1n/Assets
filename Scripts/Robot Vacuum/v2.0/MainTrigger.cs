@@ -1,14 +1,12 @@
 ﻿
-using Mall1n;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
-public class SensorMain : UdonSharpBehaviour
+public class MainTrigger : UdonSharpBehaviour
 {
-
-    public RobotVacuumScript robotVacuumScript;
+    public VacuumV2 robotVacuumScript;
     public bool delaySensor = true;
     public float delaySensorTime = 1.0f;
 
@@ -30,7 +28,7 @@ public class SensorMain : UdonSharpBehaviour
         if (other == null) return;
         if (other.isTrigger) return;
 
-        robotVacuumScript.sensorDetected = true;
+        robotVacuumScript._MainTrigger = true;
         CountColliders++;
 
         //Debug.Log($"Sensor Detected Collider! INFO: {other.name}");
@@ -43,19 +41,18 @@ public class SensorMain : UdonSharpBehaviour
 
         CountColliders--;
         if (CountColliders == 0)
-            robotVacuumScript.sensorDetected = false;
+            robotVacuumScript._MainTrigger = false;
 
         //Debug.Log($"Sensor Exit Collider! INFO: {other.name}");
 
     }
 
-    public void SensorOff()
-    {
-        if (!delaySensor) return;
-        boxCollider.enabled = false;
-        SendCustomEventDelayedSeconds("SensorOn", delaySensorTime);
-    }
+    // public void SensorOff()
+    // {
+    //     if (!delaySensor) return;
+    //     boxCollider.enabled = false;
+    //     SendCustomEventDelayedSeconds("SensorOn", delaySensorTime);
+    // }
 
     public void SensorOn() => boxCollider.enabled = true;
-
 }
