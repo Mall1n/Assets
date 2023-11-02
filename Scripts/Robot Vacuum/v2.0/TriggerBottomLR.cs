@@ -36,7 +36,7 @@ public class TriggerBottomLR : UdonSharpBehaviour
                 if (left) robotVacuumScript.triggerBottomLeft = true;
                 else robotVacuumScript.triggerBottomRight = true;
             }
-            else robotVacuumScript.BothPits = false;
+            else robotVacuumScript.bothPits = false;
 
             //robotVacuumScript.triggerBottom = true;
             //robotVacuumScript.leftTrigger = left;
@@ -54,10 +54,28 @@ public class TriggerBottomLR : UdonSharpBehaviour
         {
             if (!back)
             {
-                if (left) robotVacuumScript.triggerBottomLeft = false;
-                else robotVacuumScript.triggerBottomRight = false;
+                if (left)
+                {
+                    robotVacuumScript.triggerBottomLeft = false;
+                    if (robotVacuumScript.turning == false)
+                    {
+                        robotVacuumScript.turningLeftSide = false;
+                        robotVacuumScript.EventRotate();
+                        robotVacuumScript.StopFreeRorating();
+                    }
+                }
+                else
+                {
+                    robotVacuumScript.triggerBottomRight = false;
+                    if (robotVacuumScript.turning == false)
+                    {
+                        robotVacuumScript.turningLeftSide = true;
+                        robotVacuumScript.EventRotate();
+                        robotVacuumScript.StopFreeRorating();
+                    }
+                }
             }
-            else robotVacuumScript.BothPits = true;
+            else robotVacuumScript.bothPits = true;
             //robotVacuumScript.triggerBottom = false;
             //Debug.Log("Sensor Detected a pit!");у
         }

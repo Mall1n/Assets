@@ -31,19 +31,21 @@ public class TriggerTop : UdonSharpBehaviour
             if (left)
             {
                 robotVacuumScript.triggerTopLeft = true;
-                if (robotVacuumScript.Turning == false)
+                if (robotVacuumScript.turning == false)
                 {
                     robotVacuumScript.turningLeftSide = false;
-                    robotVacuumScript.Turning = true;
+                    robotVacuumScript.EventRotate();
+                    robotVacuumScript.StopFreeRorating();
                 }
             }
             else
             {
                 robotVacuumScript.triggerTopRight = true;
-                if (robotVacuumScript.Turning == false)
+                if (robotVacuumScript.turning == false)
                 {
                     robotVacuumScript.turningLeftSide = true;
-                    robotVacuumScript.Turning = true;
+                    robotVacuumScript.EventRotate();
+                    robotVacuumScript.StopFreeRorating();
                 }
             }
 

@@ -45,7 +45,7 @@ public class ColliderFloor : UdonSharpBehaviour
         if (CountColliders == 0)
         {
             ResetVacuumScript();
-            robotVacuumScript.ResetRotate();
+            robotVacuumScript.StopRotate();
             robotVacuumScript.SetAlert(true);
             //Debug.Log("Sensor Not Detected Floor!");
         }
