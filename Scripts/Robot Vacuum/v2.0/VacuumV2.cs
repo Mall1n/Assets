@@ -24,7 +24,7 @@ public class VacuumV2 : UdonSharpBehaviour
     [Range(2, 14)]
     public float timeForAdditionalSpeed = 6.0f;
     [Range(1, 2)]
-    public float AdditionalSpeed = 1.2f;
+    public float AdditionalSpeed = 1.4f;
     public bool Enabled = true;
     public TriggerFloor colliderFloor;
 
@@ -135,6 +135,7 @@ public class VacuumV2 : UdonSharpBehaviour
                         if (SpeedPercentage <= 1)
                             audioSource.pitch = 0.5f + (SpeedPercentage * 0.5f);
                         else audioSource.pitch = (SpeedPercentage - 1) / 2 + 1;
+                        if (rotateDegrees || Turning) audioSource.pitch += 0.1f;
 
                         if (!MainTrigger && TriggerBottomLeft && TriggerBottomRight) SpeedAcceleration();
                         else SpeedDeceleration();
@@ -142,15 +143,11 @@ public class VacuumV2 : UdonSharpBehaviour
 
                         if (!rotateDegrees)
                         {
-                            timeInDirectPathFRR += Time.deltaTime;
-                            if (timeInDirectPathFRR > timeForRandomRotate)
-                                RotateInPath(true, 10);
-
                             if (Turning)
                             {
                                 Rotate();
                             }
-                            else if (Speed == MaxSpeed)
+                            else if (Speed >= MaxSpeed)
                             {
                                 timeInDirectPath += Time.deltaTime;
                                 if (timeInDirectPath > timeForRotateInPath)
@@ -269,13 +266,17 @@ public class VacuumV2 : UdonSharpBehaviour
 
     private void SpeedAcceleration()
     {
+        timeInDirectPathFRR += Time.deltaTime;
+        if (timeInDirectPathFRR > timeForRandomRotate)
+            RotateInPath(true, 10);
+
         Speed += Acceleration;
         if (Speed > MaxSpeed)
         {
             timeInDirectPathAddSpeed += Time.deltaTime;
             if (timeInDirectPathAddSpeed > timeForAdditionalSpeed)
             {
-                Speed += Acceleration / 2;
+                Speed += Acceleration / 3;
                 if (Speed > MaxSpeed * AdditionalSpeed) Speed = MaxSpeed * AdditionalSpeed;
             }
             else Speed = MaxSpeed;
@@ -285,7 +286,7 @@ public class VacuumV2 : UdonSharpBehaviour
     private void SpeedDeceleration()
     {
         timeInDirectPathAddSpeed = 0;
-        timeInDirectPath = 0.0f;
+        timeInDirectPath = 0;
 
         if (SpeedPercentage > 1)
             Speed -= Deceleration * AdditionalSpeed;
