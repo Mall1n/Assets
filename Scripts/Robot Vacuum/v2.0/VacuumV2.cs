@@ -14,13 +14,18 @@ public class VacuumV2 : UdonSharpBehaviour
     public float Acceleration = 0.2f;
     public float Deceleration = 0.2f;
     public float RotationSpeed = 25.0f;
-    public float RotationAfterObstacle = 10.0f;
+    public float RotationAfterObstacle = 8.0f;
     [Range(0, 1)]
-    public float VolumeEngine = 0.3f;
+    public float VolumeEngine = 0.25f;
     [Range(4, 25)]
-    public float timeForRotate = 7.0f;
+    public float timeForRotateInPath = 7.0f;
+    [Range(8, 50)]
+    public float timeForRandomRotate = 25.0f;
+    [Range(2, 14)]
+    public float timeForAdditionalSpeed = 6.0f;
+    [Range(1, 2)]
+    public float AdditionalSpeed = 1.2f;
     public bool Enabled = true;
-    public MainTrigger mainTrigger;
     public TriggerFloor colliderFloor;
 
     private bool TriggerBottomLeft;
@@ -37,22 +42,25 @@ public class VacuumV2 : UdonSharpBehaviour
 
     private float timeForRotate_State = 0;
     private float RotationSpeed_State = 0;
-    private bool MainTrigger = false; // private
+    private float timeForRandomRotate_State = 0;
+    private bool MainTrigger = false;
     public bool _MainTrigger { get => MainTrigger; set => MainTrigger = value; }
     private bool OnFloor = false;
     public bool onFloor { get => OnFloor; set => OnFloor = value; }
-    private bool rotateDegrees = false; //private
-    private bool Turning = false; // private
+    private bool rotateDegrees = false;
+    private bool Turning = false;
     public bool turning { get => Turning; set => Turning = value; }
-    private bool TurningLeftSide = false; // private
+    private bool TurningLeftSide = false;
     public bool turningLeftSide { get => TurningLeftSide; set => TurningLeftSide = value; }
     private bool FreeRotating = false;
-    private float timeInDirectPath = 0.0f; // private
-    private float Speed = 0.0f;
+    private float timeInDirectPath = 0.0f;
+    private float timeInDirectPathFRR = 0.0f;
+    public float timeInDirectPathAddSpeed = 0.0f; // private
+    public float Speed = 0.0f; // private
     private float Delay = 0.0f;
     public float delay { get => Delay; set => Delay = value; }
-    private float rotateNeed = 0.0f; // private
-    private float SpeedPercentage;
+    private float rotateNeed = 0.0f;
+    public float SpeedPercentage; // private
     private Animator animator;
     private Rigidbody rigidBody;
     private DateTime dateTimePoint;
@@ -62,6 +70,7 @@ public class VacuumV2 : UdonSharpBehaviour
     [UdonSynced]
     private float SyncRandom = 1;
     private float Random = 1;
+
 
 
     void Start()
@@ -75,8 +84,9 @@ public class VacuumV2 : UdonSharpBehaviour
         DefaultAudioSource();
 
 
-        timeForRotate_State = timeForRotate;
+        timeForRotate_State = timeForRotateInPath;
         RotationSpeed_State = RotationSpeed;
+        timeForRandomRotate_State = timeForRandomRotate;
         rigidBody = GetComponent<Rigidbody>();
         dateTimePoint = DateTime.Now;
         MaxSpeed /= 100;
@@ -93,11 +103,15 @@ public class VacuumV2 : UdonSharpBehaviour
             Random = SyncRandom;
     }
 
+
+    private float minRandom = 0.5f;
+    private float maxRandom = 2.0f;
+
     private void initRandom()
     {
         if (Owner())
         {
-            SyncRandom = UnityEngine.Random.Range(0.5f, 2.0f);
+            SyncRandom = UnityEngine.Random.Range(minRandom, maxRandom);
             Random = SyncRandom;
         }
         //RequestSerialization();
@@ -118,13 +132,20 @@ public class VacuumV2 : UdonSharpBehaviour
                         SetAlert(false);
                         SpeedPercentage = Speed / MaxSpeed;
                         audioSource.volume = (0.3f + (SpeedPercentage * 0.7f)) * VolumeEngine;
-                        audioSource.pitch = 0.5f + (SpeedPercentage * 0.5f);
+                        if (SpeedPercentage <= 1)
+                            audioSource.pitch = 0.5f + (SpeedPercentage * 0.5f);
+                        else audioSource.pitch = (SpeedPercentage - 1) / 2 + 1;
 
                         if (!MainTrigger && TriggerBottomLeft && TriggerBottomRight) SpeedAcceleration();
                         else SpeedDeceleration();
+                        Move();
 
                         if (!rotateDegrees)
                         {
+                            timeInDirectPathFRR += Time.deltaTime;
+                            if (timeInDirectPathFRR > timeForRandomRotate)
+                                RotateInPath(true, 10);
+
                             if (Turning)
                             {
                                 Rotate();
@@ -132,14 +153,8 @@ public class VacuumV2 : UdonSharpBehaviour
                             else if (Speed == MaxSpeed)
                             {
                                 timeInDirectPath += Time.deltaTime;
-                                if (timeInDirectPath > timeForRotate)
-                                {
-                                    SetRotate((int)(Random * 100) % 2 == 0, RotationAfterObstacle * Random * 2f + 5);
-                                    timeInDirectPath = 0.0f;
-                                    timeForRotate = timeForRotate_State * Random;
-                                    FreeRotating = true;
-                                    RotationSpeed *= 0.5f;
-                                }
+                                if (timeInDirectPath > timeForRotateInPath)
+                                    RotateInPath(false, 2);
                             }
                         }
                         else RotateDegrees();
@@ -168,6 +183,24 @@ public class VacuumV2 : UdonSharpBehaviour
             }
         }
         else SetAlert(true);
+    }
+
+    private void RotateInPath(bool randomRotate, float factorRotate)
+    {
+        if (randomRotate)
+        {
+            SetRotate((int)(Random * 100) % 2 == 0, RotationAfterObstacle * Random * factorRotate);
+            timeInDirectPathFRR = 0;
+            timeForRandomRotate = timeForRandomRotate_State * Random;
+        }
+        else
+        {
+            SetRotate((int)(Random * 100) % 2 == 0, RotationAfterObstacle * Random * factorRotate + 5);
+            RotationSpeed *= 0.5f;
+            timeInDirectPath = 0;
+            timeForRotateInPath = timeForRotate_State * Random;
+        }
+        FreeRotating = true;
     }
 
     public void EventRotate()
@@ -236,30 +269,31 @@ public class VacuumV2 : UdonSharpBehaviour
 
     private void SpeedAcceleration()
     {
-        if (Acceleration + Speed < MaxSpeed)
+        Speed += Acceleration;
+        if (Speed > MaxSpeed)
         {
-            Speed += Acceleration;
-            rigidBody.MovePosition(transform.position + transform.forward * (Speed * Time.deltaTime));
-        }
-        else
-        {
-            Speed = MaxSpeed;
-            rigidBody.MovePosition(transform.position + transform.forward * (Speed * Time.deltaTime));
+            timeInDirectPathAddSpeed += Time.deltaTime;
+            if (timeInDirectPathAddSpeed > timeForAdditionalSpeed)
+            {
+                Speed += Acceleration;
+                if (Speed > MaxSpeed * AdditionalSpeed) Speed = MaxSpeed * AdditionalSpeed;
+            }
+            else Speed = MaxSpeed;
         }
     }
 
     private void SpeedDeceleration()
     {
+        timeInDirectPathAddSpeed = 0;
         timeInDirectPath = 0.0f;
-        if (Speed - Deceleration > 0)
-        {
-            Speed -= Deceleration;
-            rigidBody.MovePosition(transform.position + transform.forward * (Speed * Time.deltaTime));
-        }
-        else if (Speed != 0) Speed = 0;
+
+        if (SpeedPercentage > 1)
+            Speed -= Deceleration * AdditionalSpeed;
+        else Speed -= Deceleration;
+        if (Speed < 0) Speed = 0;
     }
 
-
+    private void Move() => rigidBody.MovePosition(transform.position + transform.forward * (Speed * Time.deltaTime));
 
     private void Rotate()
     {

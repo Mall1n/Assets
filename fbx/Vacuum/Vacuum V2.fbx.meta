@@ -22,6 +22,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Miyomi
+    second: {fileID: 2100000, guid: 9e3bd469754148143bdfce9e5c67d9d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: black matt
     second: {fileID: 2100000, guid: 47912e748b64f7f419339da070454d02, type: 2}
   - first:
