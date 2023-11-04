@@ -10,9 +10,9 @@ using UnityEngine.UI;
 public class VacuumV2 : UdonSharpBehaviour
 {
     public AudioSource audioSource;
-    public float MaxSpeed = 0.25f;
-    public float Acceleration = 0.2f;
-    public float Deceleration = 0.2f;
+    public float MaxSpeed = 25f;
+    public float Acceleration = 2f;
+    public float Deceleration = 3f;
     public float RotationSpeed = 25.0f;
     public float RotationAfterObstacle = 8.0f;
     [Range(0, 1)]
@@ -55,12 +55,12 @@ public class VacuumV2 : UdonSharpBehaviour
     private bool FreeRotating = false;
     private float timeInDirectPath = 0.0f;
     private float timeInDirectPathFRR = 0.0f;
-    public float timeInDirectPathAddSpeed = 0.0f; // private
-    public float Speed = 0.0f; // private
+    private float timeInDirectPathAddSpeed = 0.0f;
+    private float Speed = 0.0f;
     private float Delay = 0.0f;
     public float delay { get => Delay; set => Delay = value; }
     private float rotateNeed = 0.0f;
-    public float SpeedPercentage; // private
+    private float SpeedPercentage;
     private Animator animator;
     private Rigidbody rigidBody;
     private DateTime dateTimePoint;
@@ -275,7 +275,7 @@ public class VacuumV2 : UdonSharpBehaviour
             timeInDirectPathAddSpeed += Time.deltaTime;
             if (timeInDirectPathAddSpeed > timeForAdditionalSpeed)
             {
-                Speed += Acceleration;
+                Speed += Acceleration / 2;
                 if (Speed > MaxSpeed * AdditionalSpeed) Speed = MaxSpeed * AdditionalSpeed;
             }
             else Speed = MaxSpeed;
@@ -327,24 +327,6 @@ public class VacuumV2 : UdonSharpBehaviour
             StopRotate();
         }
     }
-
-
-    // private int GenerateRandom()
-    // {
-    //     int ret = 0;
-    //     if (RandomSeed++ == 100)
-    //         RandomSeed = 1;
-    //     string t = (Mathf.PI * RandomSeed).ToString().Replace(",", "");
-    //     if (t.Length > 6)
-    //         t = t.Substring(3, 2);
-    //     else return 0;
-    //     if (!int.TryParse(t, out ret))
-    //         return 0;
-    //     ret = (int)(ret * AddMaxRotate);
-    //     if (RandomSeed % 2 == 0)
-    //         ret *= -1;
-    //     return ret;
-    // }
 
 
 
